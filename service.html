@@ -365,14 +365,24 @@
         .footer-section h3 {
             margin-bottom: 20px;
             font-size: 18px;
+            color: var(--secondary-blue);
         }
         
         .footer-section ul {
             list-style: none;
+            padding: 0;
         }
         
         .footer-section ul li {
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-section ul li i {
+            margin-left: 8px;
+            width: 20px;
+            text-align: center;
         }
         
         .footer-section ul li a {
@@ -385,12 +395,36 @@
             color: white;
         }
         
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
         .copyright {
             text-align: center;
             margin-top: 40px;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #aaa;
+            font-size: 14px;
         }
         
         /* تصميم متجاوب */
@@ -410,9 +444,18 @@
             
             .nav ul {
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .nav ul li {
+                margin: 0 10px 5px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -431,10 +474,6 @@
                 </ul>
             </nav>
             
-            <div class="user-actions">
-                <a href="#"><i class="far fa-user"></i></a>
-                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-            </div>
         </div>
     </header>
 
@@ -520,7 +559,7 @@
                 <h2>معرض أعمالنا</h2>
                 <div class="portfolio-grid">
                     <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/600x400" alt="موقع تجاري">
+                        <img src="ART/eid.jpg" alt="موقع تجاري">
                         <div class="portfolio-item-info">
                             <h3>موقع تجاري</h3>
                             <p>تصميم موقع لشركة تجارية</p>
@@ -528,7 +567,7 @@
                     </div>
                     
                     <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/600x400" alt="متجر إلكتروني">
+                        <img src="ART/nezoko.jpg" alt="متجر إلكتروني">
                         <div class="portfolio-item-info">
                             <h3>متجر إلكتروني</h3>
                             <p>تصميم متجر لبيع المنتجات</p>
@@ -536,7 +575,7 @@
                     </div>
                     
                     <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/600x400" alt="موقع شخصي">
+                        <img src="ART/tanjiro.jpg" alt="موقع شخصي">
                         <div class="portfolio-item-info">
                             <h3>موقع شخصي</h3>
                             <p>تصميم موقع لصاحب عمل حر</p>
@@ -544,7 +583,8 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
+    </main>
 
     <!-- تذييل الصفحة -->
     <footer class="footer">
@@ -553,16 +593,23 @@
                 <div class="footer-section">
                     <h3>عن المتجر</h3>
                     <p>متجرنا الإلكتروني يقدم حلولاً رقمية متكاملة لمساعدة الأعمال على النمو في العالم الرقمي.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 
                 <div class="footer-section">
                     <h3>روابط سريعة</h3>
                     <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="products.html">المنتجات</a></li>
-                        <li><a href="services.html">الخدمات</a></li>
-                        <li><a href="about.html">عن المتجر</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="products.html"><i class="fas fa-chevron-left"></i> المنتجات</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> عن المتجر</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
                     </ul>
                 </div>
                 
@@ -571,10 +618,9 @@
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@store.com</li>
                         <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
-                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
                     </ul>
                 </div>
-            </div>
+                
             
             <div class="copyright">
                 <p>&copy; 2023 متجرنا الإلكتروني. جميع الحقوق محفوظة.</p>
@@ -584,7 +630,7 @@
 
     <script>
         // معالجة إرسال النموذج
-        document.getElementById('service-form').addEventListener('submit', async function(e) {
+        document.getElementById('service-form')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const form = e.target;
