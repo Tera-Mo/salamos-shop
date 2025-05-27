@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="متجر Salamos - خدمات تصميم المواقع، مونتاج الفيديو، والأعمال الفنية الرقمية">
+    <meta name="keywords" content="تصميم مواقع، مونتاج فيديو، رسومات، أنمي، فن رقمي">
+    <meta name="author" content="Salamos Team">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Salamos - خدمات إبداعية متكاملة">
+    <meta property="og:description" content="اكتشف خدماتنا المميزة في تصميم المواقع، مونتاج الفيديو، والأعمال الفنية الرقمية">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://salamos.com">
     <title>الرئيسيه- Salamos</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'El Messiri';
+            src: url('Fonts/El_Messiri/ElMessiri-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         :root {
             --primary-color: #1a73e8;
             --primary-dark: #0d47a1;
@@ -21,14 +39,17 @@
             --text-secondary: #b0b0b0;
             --border-color: #333;
             --glass-bg: rgba(30, 30, 30, 0.7);
+            --transition-speed: 0.3s;
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Lalezar', sans-serif;
-            text-decoration: none !important; /* إضافة لجميع العناصر */
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+            text-decoration: none !important;
+            transition: all var(--transition-speed) var(--transition-timing);
         }
 
         body {
@@ -54,6 +75,15 @@
             z-index: 1000;
             padding: 15px 0;
             border-bottom: 1px solid var(--border-color);
+            transition: transform 0.4s var(--transition-timing),
+                        background-color var(--transition-speed) var(--transition-timing),
+                        box-shadow var(--transition-speed) var(--transition-timing);
+        }
+
+        .header.scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .header .container {
@@ -80,16 +110,27 @@
         .nav ul li a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
+            font-size: 22px;
+            position: relative;
+            transition: color 0.3s var(--transition-timing);
             padding: 5px 10px;
             border-radius: 4px;
         }
 
-        .nav ul li a:hover,
-        .nav ul li a.active {
-            color: var(--accent-color);
-            background-color: rgba(251, 188, 5, 0.1);
+        .nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s var(--transition-timing);
+        }
+
+        .nav ul li a:hover::after,
+        .nav ul li a.active::after {
+            width: 100%;
         }
 
         .menu-toggle {
@@ -101,43 +142,134 @@
 
         /* القسم الرئيسي */
         .hero-section {
+            position: relative;
             padding: 150px 0 80px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                         url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            transform: scale(1.1);
+            transition: transform 0.8s var(--transition-timing);
+            z-index: -1;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-content h1 {
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 20px;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
         }
 
         .hero-content p {
-            font-size: 20px;
+            font-size: 24px;
             margin-bottom: 30px;
             color: var(--text-secondary);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeIn 1s ease-out 0.6s backwards;
         }
 
         .cta-btn {
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 12px 25px;
-            border-radius: 17px;
+            padding: 15px 30px;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 18px;
-            margin-left: 15px;
-            transition: all 0.3s;
+            font-size: 20px;
+            transition: all 0.4s var(--transition-timing);
             border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .cta-btn:hover {
             background-color: transparent;
             color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 120px 0 60px;
+                min-height: 80vh;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
         }
 
         /* قسم المنتجات */
@@ -148,10 +280,14 @@
 
         .section-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 42px;
             margin-bottom: 50px;
             color: var(--accent-color);
             position: relative;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            transition: transform 0.4s var(--transition-timing),
+                        color 0.4s var(--transition-timing);
         }
 
         .section-title::after {
@@ -161,6 +297,10 @@
             height: 3px;
             background-color: var(--primary-color);
             margin: 15px auto;
+        }
+
+        .section-title:hover {
+            transform: translateY(-2px);
         }
 
         .products-grid {
@@ -174,13 +314,14 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.4s var(--transition-timing),
+                        box-shadow 0.4s var(--transition-timing);
             border: 1px solid var(--border-color);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .product-image {
@@ -192,11 +333,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s var(--transition-timing);
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .product-info {
@@ -204,19 +345,27 @@
         }
 
         .product-info h3 {
-            font-size: 20px;
+            font-size: 24px;
             margin-bottom: 10px;
             color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: transform 0.4s var(--transition-timing),
+                        color 0.4s var(--transition-timing);
+        }
+
+        .product-info h3:hover {
+            transform: translateY(-2px);
         }
 
         .product-desc {
             color: var(--text-secondary);
             margin-bottom: 15px;
-            font-size: 16px;
+            font-size: 20px;
         }
 
         .product-price {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: bold;
             color: var(--accent-color);
             margin-bottom: 15px;
@@ -226,10 +375,33 @@
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s;
+            font-size: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s var(--transition-timing);
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s var(--transition-timing),
+                        height 0.6s var(--transition-timing);
+        }
+
+        .add-to-cart:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .add-to-cart:hover {
@@ -269,14 +441,23 @@
         }
 
         .service-card h3 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 15px;
             color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: transform 0.4s var(--transition-timing),
+                        color 0.4s var(--transition-timing);
+        }
+
+        .service-card h3:hover {
+            transform: translateY(-2px);
         }
 
         .service-card p {
             color: var(--text-secondary);
             margin-bottom: 20px;
+            font-size: 20px;
         }
 
         /* زر المزيد المميز */
@@ -294,11 +475,28 @@
             width: 120px;
             margin: 0 auto;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s var(--transition-timing);
         }
 
-        .service-btn i {
-            margin-right: 8px;
-            transition: transform 0.3s;
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s var(--transition-timing),
+                        height 0.6s var(--transition-timing);
+        }
+
+        .service-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .service-btn:hover {
@@ -356,13 +554,13 @@
         }
 
         .about-text h3 {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 20px;
             color: var(--accent-color);
         }
 
         .about-text p {
-            font-size: 18px;
+            font-size: 22px;
             color: var(--text-secondary);
             line-height: 1.8;
         }
@@ -382,7 +580,7 @@
         }
 
         .footer-section h3 {
-            font-size: 22px;
+            font-size: 26px;
             margin-bottom: 20px;
             color: var(--accent-color);
             position: relative;
@@ -410,11 +608,14 @@
         .footer-section ul li a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: transform 0.3s var(--transition-timing),
+                        color 0.3s var(--transition-timing);
+            font-size: 20px;
         }
 
         .footer-section ul li a:hover {
             color: var(--primary-color);
+            transform: translateX(-5px);
         }
 
         .footer-section p {
@@ -422,6 +623,7 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            font-size: 20px;
         }
 
         .footer-section p i {
@@ -443,13 +645,14 @@
             background-color: var(--card-bg);
             border-radius: 50%;
             color: var(--text-color);
-            transition: all 0.3s;
+            transition: transform 0.4s var(--transition-timing),
+                        background-color 0.4s var(--transition-timing);
             text-decoration: none;
         }
 
         .social-icons a:hover {
             background-color: var(--primary-color);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
         }
 
         .copyright {
@@ -457,42 +660,7 @@
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* الترجمة */
-        #google_translate_element {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 5px 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        .goog-te-banner-frame.skiptranslate,
-        .goog-te-gadget-icon {
-            display: none !important;
-        }
-
-        body {
-            top: 0px !important; 
-        }
-
-        .goog-te-gadget {
-            font-size: 14px;
-            color: var(--text-color);
-        }
-
-        .goog-te-combo {
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            color: var(--text-color);
+            font-size: 18px;
         }
 
         /* التصميم المتجاوب */
@@ -512,10 +680,14 @@
                 width: 100%;
                 order: 3;
                 margin-top: 15px;
+                transition: transform 0.4s var(--transition-timing),
+                            opacity 0.4s var(--transition-timing);
             }
 
             .nav.active {
                 display: block;
+                transform: translateY(0);
+                opacity: 1;
             }
 
             .nav ul {
@@ -574,9 +746,553 @@
                 padding: 20px;
             }
         }
+
+        /* إضافة أنماط جديدة */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s var(--transition-timing),
+                        visibility 0.5s var(--transition-timing);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transition: transform 0.8s var(--transition-timing);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* تحسين التحميل البطيء للصور */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* تحسين التجاوب مع الشاشات الكبيرة */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+
+        /* تحسين الأداء على الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* تحسينات التمرير */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* تحسينات الصور */
+        img {
+            transition: opacity 0.4s var(--transition-timing),
+                        transform 0.4s var(--transition-timing);
+        }
+
+        img.lazy-load {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        img.lazy-load.loaded {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* تحسينات النصوص */
+        .section-title:hover, .hero-content h1:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-section a:hover {
+            transform: translateX(-5px);
+        }
+
+        /* تنسيقات الدليل */
+        .shepherd-text {
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif !important;
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-header {
+            background-color: var(--primary-color) !important;
+        }
+
+        .shepherd-title {
+            font-family: 'Cairo', sans-serif !important;
+            font-weight: 600 !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-button {
+            background-color: var(--primary-color) !important;
+            border: none !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+            cursor: pointer !important;
+            margin-right: 0.5rem !important;
+            padding: 0.5rem 1.5rem !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+        }
+
+        .shepherd-button:hover {
+            background-color: var(--primary-dark) !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-button:not(:disabled) {
+            cursor: pointer !important;
+        }
+
+        .shepherd-cancel-icon {
+            color: #ffffff !important;
+        }
+
+        .shepherd-content {
+            border-radius: 8px !important;
+            background-color: var(--card-bg) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .shepherd-arrow {
+            border-color: var(--card-bg) !important;
+        }
+
+        .shepherd-arrow::before {
+            border-color: var(--card-bg) !important;
+        }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .tour-highlight::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(26, 115, 232, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 115, 232, 0);
+            }
+        }
+
+        /* تنسيقات مربع حوار الدليل */
+        .tour-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .tour-dialog-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tour-dialog h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .tour-dialog-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .tour-dialog-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .tour-dialog-btn.yes {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .tour-dialog-btn.no {
+            background: var(--border-color);
+            color: #ffffff;
+        }
+
+        .tour-dialog-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // إدارة القائمة المنسدلة
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const navLinks = document.querySelectorAll('.nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        mainNav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+            
+            // تمييز القسم النشط
+            window.addEventListener('scroll', function() {
+                const currentPosition = window.scrollY + 100;
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const section = document.querySelector(link.getAttribute('href'));
+                    
+                    if (section && section.offsetTop <= currentPosition &&
+                        section.offsetTop + section.offsetHeight > currentPosition) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // إخفاء شاشة التحميل
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            window.addEventListener('load', () => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            });
+
+            // زر العودة للأعلى
+            const scrollToTop = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTop.classList.add('visible');
+                } else {
+                    scrollToTop.classList.remove('visible');
+                }
+            });
+
+            scrollToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // تحميل الصور بشكل تدريجي
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+
+            // تحسين أداء القائمة المتنقلة
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // إعداد الدليل
+            const tour = new Shepherd.Tour({
+                useModalOverlay: true,
+                defaultStepOptions: {
+                    classes: 'shepherd-theme-custom',
+                    scrollTo: true,
+                    cancelIcon: {
+                        enabled: true
+                    }
+                }
+            });
+
+            // إضافة خطوات الدليل
+            tour.addStep({
+                id: 'welcome',
+                text: 'مرحباً بك في موقعنا! دعني أريك أهم أقسام الموقع',
+                attachTo: {
+                    element: '.hero-content',
+                    on: 'bottom'
+                },
+                buttons: [
+                    {
+                        text: 'تخطي',
+                        action: tour.complete
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'products',
+                text: 'هنا يمكنك تصفح منتجاتنا المميزة',
+                attachTo: {
+                    element: '#products',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'services',
+                text: 'اكتشف خدماتنا المتنوعة في تصميم المواقع ومونتاج الفيديو',
+                attachTo: {
+                    element: '#services',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'about',
+                text: 'تعرف على قصتنا وكيف بدأنا',
+                attachTo: {
+                    element: '#about',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'إنهاء',
+                        action: function() {
+                            // إظهار مربع حوار للخيارات
+                            const dialog = document.createElement('div');
+                            dialog.className = 'tour-dialog';
+                            dialog.innerHTML = `
+                                <div class="tour-dialog-content">
+                                    <h3>هل تريد إظهار الدليل في المرة القادمة؟</h3>
+                                    <div class="tour-dialog-buttons">
+                                        <button class="tour-dialog-btn yes">نعم</button>
+                                        <button class="tour-dialog-btn no">لا</button>
+                                    </div>
+                                </div>
+                            `;
+                            document.body.appendChild(dialog);
+
+                            // إضافة معالجات الأحداث
+                            dialog.querySelector('.yes').addEventListener('click', () => {
+                                dialog.remove();
+                                tour.complete();
+                            });
+
+                            dialog.querySelector('.no').addEventListener('click', () => {
+                                localStorage.setItem('tourCompleted', 'true');
+                                dialog.remove();
+                                tour.complete();
+                            });
+                        }
+                    }
+                ]
+            });
+
+            // بدء الدليل إذا لم يكن المستخدم قد اختار عدم الظهور
+            if (!localStorage.getItem('tourCompleted')) {
+                setTimeout(() => {
+                    tour.start();
+                }, 1000);
+            }
+
+            // إضافة زر لإعادة تشغيل الدليل
+            const restartTourBtn = document.createElement('button');
+            restartTourBtn.innerHTML = '<i class="fas fa-question-circle"></i>';
+            restartTourBtn.className = 'restart-tour-btn';
+            restartTourBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                transition: all 0.3s ease;
+                z-index: 1000;
+            `;
+            restartTourBtn.addEventListener('mouseover', () => {
+                restartTourBtn.style.transform = 'scale(1.1)';
+            });
+            restartTourBtn.addEventListener('mouseout', () => {
+                restartTourBtn.style.transform = 'scale(1)';
+            });
+            restartTourBtn.addEventListener('click', () => {
+                localStorage.removeItem('tourCompleted');
+                tour.start();
+            });
+            document.body.appendChild(restartTourBtn);
+        });
+    </script>
 </head>
 <body>
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- شريط التنقل العلوي -->
     <header class="header">
         <div class="container">
@@ -703,10 +1419,10 @@
                 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fa-solid fa-images"></i>
+                        <i class="fa-solid fa-palette"></i>
                     </div>
-                    <h3>بيع صور</h3>
-                    <p>لدينا رسومات مميزه من فنان مبدع</p>
+                    <h3>معرض الفنون</h3>
+                    <p>اكتشف مجموعتنا المميزة من الأعمال الفنية الرقمية والرسومات الإبداعية</p>
                     <a href="art.html" class="service-btn">
                         <span>المزيد</span>
                         <i class="fas fa-arrow-left"></i>
@@ -735,7 +1451,7 @@
                         
                         🎬 مونتاج الفيديوهات باحترافية وجودة عالية
                         
-                        اشتغلنا سوا على تصميم الموقع، قسمنا المهام بيننا، واستخدمنا مهاراتنا في HTML وCSS والبرامج الإبداعية علشان نطلع بتصميم أنيق بألوان زرقاء مريحة.
+                        اشتغلنا سوا على تصميم الموقع، قسمنا المهام بيننا، واستخدمنا مهاراتنا في HTML وCSS والبرامج الإبداعية علشان نطلع بتصميم أنيق ,
                         هدفنا مش بس البيع، لكن كمان إننا نقدم قيمة، ونتعلم ونتطور في مجالات بنحبها ❤️
                     </p>
                 </div>
@@ -780,60 +1496,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // إدارة القائمة المنسدلة
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            
-            menuToggle.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-                this.querySelector('i').classList.toggle('fa-bars');
-                this.querySelector('i').classList.toggle('fa-times');
-            });
-            
-            // إغلاق القائمة عند النقر على رابط
-            const navLinks = document.querySelectorAll('.nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth < 768) {
-                        mainNav.classList.remove('active');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            });
-            
-            // تمييز القسم النشط
-            window.addEventListener('scroll', function() {
-                const currentPosition = window.scrollY + 100;
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    const section = document.querySelector(link.getAttribute('href'));
-                    
-                    if (section && section.offsetTop <= currentPosition &&
-                        section.offsetTop + section.offsetHeight > currentPosition) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-            
-            // التمرير السلس
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
